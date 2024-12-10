@@ -17,7 +17,7 @@ const notificationschema = mongoose.Schema({
     type : {
         type : String,
         required : true,
-        enum : ["follow","like"]   // Restricts the field to these two values only
+        enum : ["follow","like"]
 
     },
     read : {
