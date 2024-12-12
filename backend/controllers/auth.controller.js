@@ -80,7 +80,8 @@ export const logOut = async (req, res) => {
         console.log(`Error in ${error.message}`)
         
     }
-}
+} 
+
 
 export const getMe = async (req, res) => {
       try{
