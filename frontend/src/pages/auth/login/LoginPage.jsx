@@ -7,11 +7,13 @@ import { MdPassword } from "react-icons/md";
 import { useMutation } from "@tanstack/react-query";
 import { baseUrl } from "../../../constant/url";
 import LoadingSpinner from "../../../components/common/LoadingSpinner";
+import { useQueryClient } from "@tanstack/react-query";
 const LoginPage = () => {
 	const [formData, setFormData] = useState({
 		username: "",
 		password: "",
 	});
+	const queryClient = useQueryClient();
 	const {mutate:login, isPending, isError, error} = useMutation({
 		mutationFn: async ({username,password}) => {
 			try{
@@ -33,7 +35,11 @@ const LoginPage = () => {
 			}
 		},
 		onSuccess:()=>{
-			toast.success("Successfully logged in");
+			toast.success("Successfully logged in"); 
+			// refetch the authUser query to get the updated user data after login 
+			queryClient.invalidateQueries({
+				queryKey:["authUser"]
+			});
 		},
 		onError:(error)=>{
 			toast.error(error.message);
