@@ -10,6 +10,7 @@ import { MdDriveFileRenameOutline } from "react-icons/md";
 import { baseUrl } from "../../../constant/url";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
+import LoadingSpinner from "../../../components/common/LoadingSpinner";
 const SignUpPage = () => {
 	const [formData, setFormData] = useState({
 		email: "",
@@ -112,7 +113,7 @@ const SignUpPage = () => {
 							value={formData.password}
 						/>
 					</label>
-					<button className='btn rounded-full btn-primary text-white'>{isPending?"Loading":"Sign Up"}</button>
+					<button className='btn rounded-full btn-primary text-white'>{isPending?<LoadingSpinner />:"Sign Up"}</button>
 					{isError && <p className='text-red-500'>{error.message}</p>}
 				</form>
 				<div className='flex flex-col lg:w-2/3 gap-2 mt-4'>

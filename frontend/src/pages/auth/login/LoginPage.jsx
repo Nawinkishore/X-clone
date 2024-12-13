@@ -6,6 +6,7 @@ import { FaUser } from "react-icons/fa";
 import { MdPassword } from "react-icons/md";
 import { useMutation } from "@tanstack/react-query";
 import { baseUrl } from "../../../constant/url";
+import LoadingSpinner from "../../../components/common/LoadingSpinner";
 const LoginPage = () => {
 	const [formData, setFormData] = useState({
 		username: "",
@@ -81,7 +82,7 @@ const LoginPage = () => {
 							value={formData.password}
 						/>
 					</label>
-					<button className='btn rounded-full btn-primary text-white'>{isPending?"Loading":"Login"}</button>
+					<button className='btn rounded-full btn-primary text-white'>{isPending?<LoadingSpinner/>:"Login"}</button>
 					{isError && <p className='text-red-500'>{error.message}</p>}
 				</form>
 				<div className='flex flex-col gap-2 mt-4'>
