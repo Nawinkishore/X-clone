@@ -1,5 +1,5 @@
 // const express = require('express');
-import express from 'express' //It can be achieved by adding the "type" : "module"
+import express, { urlencoded } from 'express' //It can be achieved by adding the "type" : "module"
 import dotenv from 'dotenv'
 import authRoute from './Routes/auth.route.js'
 import userRoute from './Routes/user.route.js'
@@ -8,6 +8,7 @@ import notificationRoute from './Routes/notification.route.js'
 import connectDB from './db/connectDB.js';
 import cookieParser from 'cookie-parser';
 import cloudinary from "cloudinary"
+import cors from 'cors'
 dotenv.config();
 cloudinary.config(
     {
@@ -22,6 +23,11 @@ app.listen(PORT,()=>{
     console.log(`listening on ${PORT}`);
     connectDB();
 })
+app.use(cors({
+    origin : "http://localhost:3000",
+    credentials : true
+}))
+app.use(urlencoded({extended:true}))
 app.use(cookieParser())
 app.use(express.json()); // middleware
 app.use('/api/auth',authRoute);

@@ -7,6 +7,7 @@ import Sidebar from './components/common/SideBar'
 import RightPanel from './components/common/RightPanel'
 import NotificationPage from './pages/notification/NotificationPage'
 import ProfilePage from './pages/profile/ProfilePage'
+import { Toaster } from 'react-hot-toast'
 const App = () => {
   return (
     <div className='flex max-w-6xl mx-auto'>
@@ -19,7 +20,7 @@ const App = () => {
         <Route path='/profile/:username' element={<ProfilePage/>}></Route>
       </Routes>
       <RightPanel/>
-       
+       <Toaster/>
 
     </div>
   )
